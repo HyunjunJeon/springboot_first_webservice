@@ -1,3 +1,5 @@
+##### SpringBoot로 웹서비스 개발해보는 첫 프로젝트 [![Build Status](https://travis-ci.org/HyunjunJeon/springboot_first_webservice.svg?branch=master)](https://travis-ci.org/HyunjunJeon/springboot_first_webservice) #####
+
 1. Spring Boot 만나보기
 
 2. Spring Boot로 DB접근 해보기 + Time 주입 ( DB 에서 하지말고 애플리케이션 단에서 )
@@ -129,7 +131,7 @@
       notifications
       Travis CI 실행 완료시 자동으로 알람이 가도록 설정합니다
 
-        
+
 
 
 
