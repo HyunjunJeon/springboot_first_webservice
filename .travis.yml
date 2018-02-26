@@ -20,10 +20,16 @@ notifications:
     recipients:
       - jeonhj920@gmail.com
 
+before_deploy: #프로젝트 폴더를 통째로 압축해서 AWS S3로 전달하도록
+  - zip -r springboot-first-webservice *
+  - mkdir -p deploy
+  - mv springboot-first-webservice.zip deploy/springboot-first-webservice.zip
+
 deploy:
   - provider : s3
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
+    local_dir : deploy # before_deploy에서 생성한 디렉토리
     bucket: springboot-first-webservice-deploy
     region: ap-northeast-2
     skip_cleanup: true
@@ -32,3 +38,19 @@ deploy:
     on:
       repo: HyunjunJeon/springboot_first_webservice
       branch: master
+
+  - provider: codedeploy
+      access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+      secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+      bucket: springboot-first-webservice-deploy # S3 버킷
+      key: springboot-first-webservice.zip # S3 버킷에 저장된 springboot-webservice.zip 파일을 EC2로 배포
+      bundle_type: zip
+      application: springboot-first-webservice # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+      deployment_group: springboot-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+      region: ap-northeast-2
+      wait-until-deployed: true
+      on:
+        repo: HyunjunJeon/springboot_first_webservice
+        branch: master
+
+
