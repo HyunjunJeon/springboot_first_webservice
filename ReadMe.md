@@ -1,10 +1,11 @@
-##### SpringBoot로 웹서비스 개발해보는 첫 프로젝트 [![Build Status](https://travis-ci.org/HyunjunJeon/springboot_first_webservice.svg?branch=master)](https://travis-ci.org/HyunjunJeon/springboot_first_webservice) #####
+## SpringBoot로 웹서비스 개발해보는 첫 프로젝트 [![Build Status](https://travis-ci.org/HyunjunJeon/springboot_first_webservice.svg?branch=master)](https://travis-ci.org/HyunjunJeon/springboot_first_webservice) #####
 
-1. Spring Boot 만나보기
+####1. Spring Boot 만나보기
 
-2. Spring Boot로 DB접근 해보기 + Time 주입 ( DB 에서 하지말고 애플리케이션 단에서 )
+####2. Spring Boot로 DB접근 해보기 + Time 주입 
+      ( DB 에서 하지말고 애플리케이션 단에서 )
 
-3. 화면 만들어보기
+####3. 화면 만들어보기
     Handlebars는 흔히 사용하시는 Freemarker, Velocity와 같은 서버 템플릿 엔진입니다.
     JSP는 서버 템플릿 역할만 하지 않기 때문에 JSP와 완전히 똑같은 역할을 한다고 볼순 없지만, 순수하게 JSP를 View 용으로만 사용하실때는 똑같은 역할이라고 보시면 됩니다.
 
@@ -33,11 +34,9 @@
     스프링부트를 쓰면 많은 설정을 생략할 수 있습니다.
     영상을 참고하셔서 이런 점들은 숙지하시면 좋을것 같습니다.
 
+#### 4. AWS EC2(Ubuntu) & RDS ( MariaDB) 설정
 
-
-4. AWS EC2(Ubuntu) & RDS ( MariaDB) 설정
-
-5. EC2에 배포하기
+#### 5. EC2에 배포하기
     ./gradlew test
 
     작성한 코드를 실제 서버에 반영하는것을 배포라고 합니다.
@@ -105,7 +104,7 @@
     이를 매번 개발자가 직접 실행해봐야만 됩니다.
 
 
-    6. TravisCI & AWS CodeDeploy로 배포 자동화 구축하기
+#### 6. TravisCI & AWS CodeDeploy로 배포 자동화 구축하기
 
     CI(지속적 통합)
      모든 소스 코드가 살아있고(현재 실행되고) 어느 누구든 현재의 소스를 접근할 수 있는 단일 지점을 유지할 것
