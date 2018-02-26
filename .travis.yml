@@ -14,12 +14,6 @@ cache:
 
 script: "./gradlew clean build"
 
-# CI 실행 완료시 이메일로 알람 전송
-notifications:
-  email:
-    recipients:
-      - jeonhj920@gmail.com
-
 before_deploy: #프로젝트 폴더를 통째로 압축해서 AWS S3로 전달하도록
   - zip -r springboot-first-webservice *
   - mkdir -p deploy
@@ -29,11 +23,11 @@ deploy:
   - provider : s3
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    local_dir : deploy # before_deploy에서 생성한 디렉토리
     bucket: springboot-first-webservice-deploy
     region: ap-northeast-2
     skip_cleanup: true
     acl : public_read
+    local_dir : deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
     on:
       repo: HyunjunJeon/springboot_first_webservice
@@ -53,4 +47,8 @@ deploy:
         repo: HyunjunJeon/springboot_first_webservice
         branch: master
 
-
+# CI 실행 완료시 이메일로 알람 전송
+notifications:
+  email:
+    recipients:
+      - jeonhj920@gmail.com
