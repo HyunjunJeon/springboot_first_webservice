@@ -32,3 +32,69 @@
     영상을 참고하셔서 이런 점들은 숙지하시면 좋을것 같습니다.
 
 
+
+4. AWS EC2(Ubuntu) & RDS ( MariaDB) 설정
+
+5. EC2에 배포하기
+    ./gradlew test
+
+    작성한 코드를 실제 서버에 반영하는것을 배포라고 합니다.
+    여기서는 배포라 하면 다음의 과정을 모두 합친 뜻이라고 보시면 됩니다.
+
+    git clone 혹은 git pull을 통해 새 버전의 프로젝트 받음
+    Gradle / Maven을 통해 프로젝트 Test & Build
+    EC2 서버에서 해당 프로젝트 실행 및 재실행
+
+    /home/ubuntu/app/git/deploy.sh
+        변수에 현재 build 디렉토리 주소 저장
+        변수 + git clone 디렉토리로 이동
+        디렉토리에서 git pull 하여 최신버전으로 교체
+        프로젝트 빌드
+        build 파일을 변수에 저장된 주소로 복사
+        기존에 실행중인 스프링부트 Process id 가져옴
+        실행중인 스프링부트가 있으면 종료(kill -2 or kill -15) 5초간 대기
+        복사했던 build 파일명 저장
+        build 파일 실행
+
+    프로젝트 디렉토리 주소는 스크립트 내에서 자주 사용하는 값이기 때문에 이를 변수로 저장합니다.
+    쉘에선 타입 없이 선언하여 저장을 합니다.
+    쉘에선 $변수명으로 변수를 사용할 수 있습니다.
+
+    cd $REPOSITORY/springboot-webservice/
+    제일 처음 git clone 받았던 디렉토리로 이동합니다.
+    바로 위의 쉘 변수 설명처럼 $REPOSITORY으로 /home/ec2-user/app/git을 가져와 /springboot-webservice/를 붙인 디렉토리 주소로 이동합니다.
+
+    git pull
+    디렉토리 이동후, master브랜치의 최신 내용을 받습니다.
+
+    ./gradlew build
+    프로젝트 내부의 gradlew로 build를 수행합니다.
+
+    cp ./build/libs/*.jar $REPOSITORY/
+    build의 결과물인 jar파일을 복사해 jar파일을 모아둔 위치로 복사합니다.
+
+    CURRENT_PID=$(pgrep -f springboot-webservice)
+    기존에 수행중이던 스프링부트 어플리케이션을 종료합니다.
+    pgrep은 process id만 추출하는 명령어입니다.
+    -f 옵션은 프로세스 이름으로 찾습니다.
+    좀 더 자세한 옵션을 알고 싶으시면 공식 홈페이지를 참고하시면 좋습니다.
+
+    if ~ else ~ fi
+    현재 구동중인 프로세스가 있는지 없는지 여부를 판단해서 기능을 수행합니다.
+    process id값을 보고 프로세스가 있으면 해당 프로세스를 종료합니다.
+
+    JAR_NAME=$(ls $REPOSITORY/ |grep 'springboot-webservice' | tail -n 1)
+    새로 실행할 jar 파일명을 찾습니다.
+    여러 jar파일이 생기기 때문에 tail -n로 가장 나중의 jar파일(최신 파일)을 변수에 저장합니다.
+    nohup java -jar $REPOSITORY/$JAR_NAME &
+    찾은 jar파일명으로 해당 jar파일을 nohup으로 실행시킵니다.
+    스프링부트의 장점으로 특별히 외장 톰캣을 설치할 필요가 없습니다.
+    내장 톰캣을 사용해서 jar 파일만 있으면 바로 웹 어플리케이션 서버가 실행할수 있습니다.
+    좀 더 자세한 스프링부트의 장점을 알고 싶으시면 이전에 작성한 SpringBoot의 깨알같은 팁을 참고하시면 좋습니다.
+    일반적으로 Java를 실행시킬때는 java -jar라는 명령어를 사용하지만, 이렇게 할 경우 사용자가 터미널 접속을 끊을 경우 어플리케이션도 같이 종료가 됩니다.
+    어플리케이션 실행자가 터미널을 종료시켜도 어플리케이션은 계속 구동될 수 있도록 nohup명령어를 사용합니다.
+    nohup은 실행시킨 jar파일의 로그 내용을 nohup.out 이란 파일에 남깁니다.
+
+
+
+
