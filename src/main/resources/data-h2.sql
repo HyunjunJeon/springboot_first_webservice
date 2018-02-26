@@ -1,0 +1,2 @@
+INSERT INTO POSTS (TITLE,AUTHOR,CONTENT,CREATED_DATE,MODIFIED_DATE) VALUES ('테스트1', 'test1@gmail.com', '테스트1의 본문', now(), now())
+INSERT INTO POSTS (TITLE,AUTHOR,CONTENT,CREATED_DATE,MODIFIED_DATE) VALUES ('테스트2', 'test2@gmail.com', '테스트2의 본문', now(), now())
