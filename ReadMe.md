@@ -129,9 +129,13 @@
 
       notifications
       Travis CI 실행 완료시 자동으로 알람이 가도록 설정합니다
+      
+      AWS EC2 (Ubuntu) 내부에서 Yum MirrorList 0 이 발생.
+        > EC2 Instance 새로 만듦 ( AMI로 - 내부는 CentOS와 동일 )
+      
 
 
-
+    
 
 
 
