@@ -15,9 +15,9 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy: #프로젝트 폴더를 통째로 압축해서 AWS S3로 전달하도록
-  - zip -r springboot-first-webservice *
-  - mkdir -p deploy
-  - mv springboot-first-webservice.zip deploy/springboot-first-webservice.zip
+  - zip -r springboot-first-webservice * #모든 파일을 압축해서
+  - mkdir -p deploy # 폴더를 만들어서
+  - mv springboot-first-webservice.zip deploy/springboot-first-webservice.zip # 전달해라
 
 deploy:
   - provider : s3

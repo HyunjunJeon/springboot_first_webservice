@@ -140,6 +140,13 @@
       매번 Travis CI에서 파일을 하나하나 복사하는건 복사시간이 많이 걸리기 때문에 프로젝트 폴더 채로 압축해서 
       S3로 전달하도록 설정을 조금 추가하겠습니다.
       
+      "EC2 java 버전에서 1.8로 바꿧다고 생각했으나 문제 발생"
+      다시 yum list java*jdk-devel 로 리스트를 확인
+      yum install -y java-1.8.0-openjdk-devel.x86_64 다운로드
+      sudo /usr/sbin/alternatives --config java 적용
+      sudo yum remove java-1.7.0-openjdk 깔끔하게 삭제
+      java -version 으로 한번 더 확인!
+      
 #### 7. Nginx 서버를 이용한 무중단 배포환경 구축하기
 
       1) AWS 블루그린 배 ( 돈이 많다면....^^)
