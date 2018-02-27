@@ -178,8 +178,42 @@
      대신 외부 요청을 뒷단 서버들에게 골고루 분배한다거나, 
      한번 요청왔던 js, image, css등은 캐시하여 리버스 프록시 서버에서 바로 응답을 주거나 등의 여러 장점들이 있습니다.
      
-      
      
+     sudo vi /etc/nginx/nginx.conf
+     location/{
+     
+     }
+     proxy_pass : 요청이 오면 http://localhost:8080로 전달
+     proxy_set_header XXX : 실제 요청 데이터를 header의 각 항목에 할당
+     ex) proxy_set_header X-Real-IP $remote_addr: Request Header의 X-Real-IP에 요청자의 IP를 저장
+     
+    실제 서비스에선 로컬, 개발서버, 운영서버 등으로 환경이 분리되어 접속하는 DB 값, 외부 API 주소등이 서로 다릅니다. 
+    하지만 프로젝트의 코드는 하나인데, 어떻게 로컬, 개발, 운영 환경을 구분해서 필요한 값들을 사용할까요? 
+    아주 오래전에는 이를 필요한 부분에서 전부 if ~ else로 구분해서 사용했습니다. 
+    하지만 최근에는 이를 개선해서 외부의 설정 파일을 통해 사용하도록 하였습니다. 
+    스프링부트는 .properties, .yml 파일을 통해 여러 설정값을 관리합니다.
+        
+    운영 환경의 yml은 프로젝트 내부가 아닌 외부에 생성하겠습니다. 
+    본인이 원하는 디렉토리에 real-application.yml을 생성합니다. 
+    EC2
+    /app/config/springboot-webservice/real-application.yml
+        
+        > 내용
+        --- 
+        spring: profiles: set1 
+        server: port: 8081 
+        --- 
+        spring: profiles: set2 
+        server: port: 8082
+    
+    절대 프로젝트 내부에 운영환경의 yml을 포함시키지 않습니다. 
+    Git Push를 혹시나 한번이라도 하셨다면 프로젝트를 삭제하시는걸 추천드립니다. 
+    Git은 한번이라도 커밋 되면 이력이 남기 때문에 단순히 파일 삭제만 한다고 내용이 사라지지 않습니다. 
+    Github 같이 오픈된 공간에 운영환경의 설정 (Database 접속정보, 세션저장소 접속정보, 암호화 키 등등)
+    현재는 크리티컬한 정보를 다루지 않기 때문에 괜찮지만, 절대 주의해야합니다.
+    
+    외부에 있는 이 파일을 프로젝트가 호출할 수 있도록 Application.java 코드 변경
+    
       
       
       
