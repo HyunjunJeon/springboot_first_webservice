@@ -132,6 +132,14 @@
       
       AWS EC2 (Ubuntu) 내부에서 Yum MirrorList 0 이 발생.
         > EC2 Instance 새로 만듦 ( AMI로 - 내부는 CentOS와 동일 )
+        
+      CodeDeploy는 저장 기능이 없습니다. 
+      그래서 Travis CI가 Build 한 결과물을 받아서 CodeDeploy가 가져갈 수 있도록 보관할 수 있는 공간이 필요합니다. 
+      보통은 이럴때 AWS S3를 이용합니다. 
+      
+      매번 Travis CI에서 파일을 하나하나 복사하는건 복사시간이 많이 걸리기 때문에 프로젝트 폴더 채로 압축해서 
+      S3로 전달하도록 설정을 조금 추가하겠습니다.
+      
       
 
 

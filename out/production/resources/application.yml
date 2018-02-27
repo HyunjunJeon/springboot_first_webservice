@@ -17,14 +17,14 @@ spring:
 #모든 테이블이 drop -> create 됩니다.
 #이때문에 datasource, table 등과 같은 옵션들은 공통영역엔 두지 않고 각 profile마다 별도로 두는것을 추천합니다.
 ---
-spring:
-  profiles: local
-  datasource:
-    data: classpath:data-h2.sql #시작 시 마다 실행시킬 Script
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
+#spring:
+#  profiles: local
+#  datasource:
+#    data: classpath:data-h2.sql #시작 시 마다 실행시킬 Script
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create-drop
+#  h2:
+#    console:
+#      enabled: true
