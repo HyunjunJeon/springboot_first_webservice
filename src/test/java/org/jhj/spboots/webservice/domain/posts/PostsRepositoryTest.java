@@ -21,13 +21,13 @@ public class PostsRepositoryTest {
     PostsRepository postsRepository;
 
     @After
-    public void cleanup(){
+    public void cleanup() {
         // 이후 테스트 코드에 영향을 끼치지 않기 위해서 테스트 메서드 끝날떄마다 Repository 전체를 비워줌
         postsRepository.deleteAll();
     }
 
     @Test
-    public void boardSaveAndRead(){
+    public void boardSaveAndRead() {
         //given
         /*
             테스트 기반 환경 구축
@@ -54,7 +54,7 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void BaseTimeEntity_Test(){
+    public void BaseTimeEntity_Test() {
         //given
         LocalDateTime now1 = LocalDateTime.now();
         postsRepository.save(Posts.builder()

@@ -14,7 +14,7 @@ public class PostsMainResponseDto {
     private String author;
     private String modifiedDate;
 
-    public PostsMainResponseDto(Posts entity){
+    public PostsMainResponseDto(Posts entity) {
         id = entity.getId();
         title = entity.getTitle();
         author = entity.getAuthor();
@@ -38,7 +38,7 @@ public class PostsMainResponseDto {
      */
 
     // Java 8
-    private String toStringDateTime(LocalDateTime localDateTime){
+    private String toStringDateTime(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return Optional.ofNullable(localDateTime)
                 .map(formatter::format)
@@ -46,8 +46,8 @@ public class PostsMainResponseDto {
     }
 
     // Java 7
-    private String toStringDateTimeByJava7(LocalDateTime localDateTime){
-        if(localDateTime == null){
+    private String toStringDateTimeByJava7(LocalDateTime localDateTime) {
+        if (localDateTime == null) {
             return "";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

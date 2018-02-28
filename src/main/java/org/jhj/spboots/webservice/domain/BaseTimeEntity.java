@@ -18,8 +18,6 @@ public class BaseTimeEntity {
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
-
-
 }
 /*
     보통 Entity에는 해당 데이터의 생성시간과 수정시간을 포함시킵니다.

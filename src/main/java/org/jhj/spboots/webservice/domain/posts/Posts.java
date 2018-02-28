@@ -12,10 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Posts extends BaseTimeEntity{
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -30,7 +30,7 @@ public class Posts extends BaseTimeEntity{
     private String author;
 
     @Builder
-    public Posts(String title, String content, String author){
+    public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;

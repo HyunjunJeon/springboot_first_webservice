@@ -18,7 +18,7 @@ public class WebRestController {
     private Environment env;
 
     @GetMapping("/hello")
-    public String helloSpringBoot(){
+    public String helloSpringBoot() {
         return "Hello SpringBoot";
     }
 
@@ -43,12 +43,12 @@ public class WebRestController {
 
     */
     @PostMapping("/posts")
-    public Long savePost(@RequestBody PostsSaveRequestDto dto){
+    public Long savePost(@RequestBody PostsSaveRequestDto dto) {
         return postsService.save(dto);
     }
 
     @GetMapping("/profile")
-    public String getProfile(){
+    public String getProfile() {
         return Arrays.stream(env.getActiveProfiles())
                 .findFirst()
                 .orElse("");

@@ -16,7 +16,7 @@ public class PostsService {
     private PostsRepository postsRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto dto){
+    public Long save(PostsSaveRequestDto dto) {
         return postsRepository.save(dto.toEntity()).getId();
     }
     /*
@@ -39,7 +39,7 @@ public class PostsService {
      */
 
     @Transactional(readOnly = true)
-    public List<PostsMainResponseDto> findAllDesc(){
+    public List<PostsMainResponseDto> findAllDesc() {
         return postsRepository.findAllDesc()
                 .map(PostsMainResponseDto::new)
                 .collect(Collectors.toList());

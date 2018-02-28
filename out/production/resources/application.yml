@@ -3,6 +3,11 @@ spring:
       active: local #기본 환경 선택
 
 # local 환경
+---
+spring:
+  profiles: local
+  jpa:
+    show-sql: true
 
 #spring.profile 옵션이 추가되었는데요.
 #이 옵션은 특별히 어플리케이션 실행시 파라미터로 넘어온게 없으면 active 값을 보게됩니다.
@@ -16,7 +21,7 @@ spring:
 #만약 공통영역에 jpa.hibernate.ddl-auto:create-drop가 있고 운영 profile에 해당 설정값이 없다면 운영환경에서 배포시
 #모든 테이블이 drop -> create 됩니다.
 #이때문에 datasource, table 등과 같은 옵션들은 공통영역엔 두지 않고 각 profile마다 별도로 두는것을 추천합니다.
----
+
 #spring:
 #  profiles: local
 #  datasource:

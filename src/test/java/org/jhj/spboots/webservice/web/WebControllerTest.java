@@ -17,9 +17,9 @@ public class WebControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void loadMain(){
+    public void loadMain() {
         //when
-        String body = this.restTemplate.getForObject("/",String.class);
+        String body = this.restTemplate.getForObject("/", String.class);
 
         //then
         assertThat(body).contains("스프링부트로 시작하는 웹 서비스");

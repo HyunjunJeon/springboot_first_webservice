@@ -22,12 +22,12 @@ public class PostsServiceTest {
     private PostsRepository postsRepository;
 
     @After
-    public void cleanup(){
+    public void cleanup() {
         postsRepository.deleteAll();
     }
 
     @Test
-    public void savePostsDto(){
+    public void savePostsDto() {
         //given
         PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
                 .author("jeonhj920@gmail.com")

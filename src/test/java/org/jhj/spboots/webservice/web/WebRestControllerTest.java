@@ -8,6 +8,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Created by jeonhj920@gmail.com on 2018. 2. 28.
  * Blog : http://HyunjunJeon.github.io
@@ -21,9 +22,9 @@ public class WebRestControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void ProfileCheck(){
+    public void ProfileCheck() {
         //when
-        String profile = this.restTemplate.getForObject("/profile",String.class);
+        String profile = this.restTemplate.getForObject("/profile", String.class);
         //then
         assertThat(profile).isEqualTo("local");
     }
