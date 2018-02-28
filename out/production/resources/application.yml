@@ -6,8 +6,15 @@ spring:
 ---
 spring:
   profiles: local
+  datasource:
+    data: classpath:data-h2.sql #시작 시 마다 실행시킬 Script
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
 
 #spring.profile 옵션이 추가되었는데요.
 #이 옵션은 특별히 어플리케이션 실행시 파라미터로 넘어온게 없으면 active 값을 보게됩니다.
